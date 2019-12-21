@@ -1,14 +1,27 @@
 # The chrome-scalajs-template
 This is an opinionated template that can help you to get started fast while building browser extensions with scala-js.
 
+## Why
+While there are docs for building browser extensions, it isn't obvious how to do it with scala-js, after dealing with an extension for a while, I got a reasonable architecture that can be reused on other extensions and simplify its development, the goal from this template is to save you valuable time.
+
+The current template includes the examples for the following:
+- A tiny script that displays a notification every time you visit github.com
+- A small button on the browser toolbar which renders pop-up and displays a notification.
+- An alarm which is a task executed frequently, currently, displaying a notification.
+- Support for two languages (English/Spanish).
+- An example for dealing with the storage.
+- Configuration classes.
+- A way for building the extension for the dev environment by default, which can be overriden by an environment variable to prepare the extension for release, in this case, it replaces the server from localhost to the one you choose.
+- An example class allowing you to call http APIs.
+
 ## Get started
 It's pretty simple to get started, just follow these steps:
 - Clone the repo: `git clone https://github.com/AlexITC/chrome-scalajs-template.git`
 - Move to the cloned repo: `cd chrome-scalajs-template`
-- Add your brand: `./customize.sh com.alexitc.chrome com/alexitc/chrome` (replace the arguments with your desired base package)
+- Add your brand: `./customize.sh com.alexitc.chrome com/alexitc/chrome` (replace the arguments with your desired base package, ignore the `sed` related warnings).
 - Edit the [build.sbt](build.sbt) to add the desired details for your app.
 - Edit the [app resources](src/main/resources) to the ones for your app.
-- Commit your changes and continue to the next section for building the app.
+- Commit your changes and continue to the next section for building the app, also, start looking on the [Firefox guide](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) or the [Chrome guide](https://developer.chrome.com/extensions/devguide) for developing extensions.
 
 ## Dependencies
 Until this [PR](https://github.com/lucidd/scala-js-chrome/pull/46) gets merged, we need a custom plugin to support [content_scripts](https://developer.chrome.com/extensions/content_scripts), if you don't need those, feel free to replace the forked plugin on the [plugins.sbt](project/plugins.sbt).

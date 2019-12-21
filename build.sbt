@@ -5,7 +5,7 @@ import net.lullabyte.{Chrome, ChromeSbtPlugin}
 
 resolvers += Resolver.sonatypeRepo("releases")
 
-name := "chrome-scalajs-template"
+name := "chrome-scalajs-template" // TODO: REPLACE ME
 version := "1.0.0"
 scalaVersion := "2.12.10"
 scalacOptions ++= Seq(
@@ -55,10 +55,11 @@ chromeManifest := new ExtensionManifest {
   override val name = "__MSG_extensionName__" // NOTE: i18n on the manifest is not supported on firefox
   override val version = Keys.version.value
   override val description = Some(
-    "TO BE UPDATED"
+    "TO BE UPDATED" // TODO: REPLACE ME
   )
   override val icons = Chrome.icons("icons", "app.png", Set(48, 96, 128))
 
+  // TODO: REPLACE ME, use only the minimum required permissions
   override val permissions =
     Set[Permission](
       API.Storage,
@@ -68,6 +69,7 @@ chromeManifest := new ExtensionManifest {
 
   override val defaultLocale: Option[String] = Some("en")
 
+  // TODO: REPLACE ME
   override val browserAction: Option[BrowserAction] =
     Some(BrowserAction(icons, Some("TO BE DEFINED - POPUP TITLE"), Some("popup.html")))
 
@@ -83,7 +85,7 @@ chromeManifest := new ExtensionManifest {
     List(
       ContentScript(
         matches = List(
-          "https://github.com/*"
+          "https://github.com/*" // TODO: REPLACE ME
         ),
         css = List("css/active-tab.css"),
         js = commonScripts ::: List("scripts/active-tab-script.js")
