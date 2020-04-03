@@ -1,9 +1,10 @@
 import chrome._
 import chrome.permissions.Permission
 import chrome.permissions.Permission.API
-import net.lullabyte.{Chrome, ChromeSbtPlugin}
+import com.alexitc.{Chrome, ChromeSbtPlugin}
 
 resolvers += Resolver.sonatypeRepo("releases")
+resolvers += Resolver.sonatypeRepo("public")
 
 name := "chrome-scalajs-template" // TODO: REPLACE ME
 version := "1.0.0"
@@ -14,8 +15,7 @@ scalacOptions ++= Seq(
   "-Xlint",
   "-deprecation",
   //"-Xfatal-warnings",
-  "-feature",
-  "-P:scalajs:sjsDefinedByDefault"
+  "-feature"
 )
 
 enablePlugins(ChromeSbtPlugin, BuildInfoPlugin)
@@ -30,7 +30,9 @@ buildInfoKeys ++= Seq[BuildInfoKey](
 // scala-js-chrome
 scalaJSUseMainModuleInitializer := true
 scalaJSUseMainModuleInitializer in Test := false
-relativeSourceMaps := true
+scalaJSLinkerConfig := scalaJSLinkerConfig.value.withRelativizeSourceMapBase(
+  Some((Compile / fastOptJS / artifactPath).value.toURI)
+)
 skip in packageJSDependencies := false
 
 // you can customize and have a static output name for lib and dependencies
@@ -95,17 +97,14 @@ chromeManifest := new ExtensionManifest {
   override val webAccessibleResources = List("icons/*")
 }
 
-val circe = "0.11.1"
-val sttp = "1.7.0"
+val circe = "0.13.0"
 
-libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.7"
-libraryDependencies += "net.lullabyte" %%% "scala-js-chrome" % "1b6d0d9cbeb95a23d5ecd4ba0defd6f1373fae1b"
+libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "1.0.0"
+libraryDependencies += "com.alexitc" %%% "scala-js-chrome" % "0.6.1"
 
 libraryDependencies += "io.circe" %%% "circe-core" % circe
 libraryDependencies += "io.circe" %%% "circe-generic" % circe
 libraryDependencies += "io.circe" %%% "circe-parser" % circe
-
-libraryDependencies += "com.softwaremill.sttp" %%% "core" % sttp
 
 addCompilerPlugin(
   "org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full

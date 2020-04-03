@@ -4,7 +4,6 @@ import com.alexitc.Config
 import com.alexitc.background.alarms.AlarmRunner
 import com.alexitc.background.models.{Command, Event}
 import com.alexitc.background.services.browser.BrowserNotificationService
-import com.alexitc.background.services.http.HttpService
 import com.alexitc.background.services.storage.StorageService
 import com.alexitc.common.I18NMessages
 import io.circe.syntax._
@@ -65,7 +64,6 @@ object Runner {
 
   def apply(config: Config)(implicit ec: ExecutionContext): Runner = {
     val storage = new StorageService
-    val http = HttpService(config.httpConfig)
     val messages = new I18NMessages
     val browserNotificationService = new BrowserNotificationService(messages)
     val commandProcessor =

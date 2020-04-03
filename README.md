@@ -12,9 +12,11 @@ The current template includes the examples for the following:
 - An example for dealing with the storage.
 - Configuration classes.
 - A way for building the extension for the dev environment by default, which can be overriden by an environment variable to prepare the extension for release, in this case, it replaces the server from localhost to the one you choose.
-- An example class allowing you to call http APIs.
 
 ## Get started
+
+**NOTE**: This template works only with scalajs 1.0.0, if you want to use a previous version, run `git checkout 402abfac9a4b9eba7f395009aa9b2243f3498273` and follow the docs from that version.
+
 It's pretty simple to get started, just follow these steps:
 - Clone the repo: `git clone https://github.com/AlexITC/chrome-scalajs-template.git`
 - Move to the cloned repo: `cd chrome-scalajs-template`
@@ -22,16 +24,7 @@ It's pretty simple to get started, just follow these steps:
 - Edit the [build.sbt](build.sbt) to add the desired details for your app.
 - Edit the [app resources](src/main/resources) to the ones for your app.
 - Commit your changes and continue to the next section for building the app, also, start looking on the [Firefox guide](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) or the [Chrome guide](https://developer.chrome.com/extensions/devguide) for developing extensions.
-
-## Dependencies
-Until this [PR](https://github.com/lucidd/scala-js-chrome/pull/46) gets merged, we need a custom plugin to support [content_scripts](https://developer.chrome.com/extensions/content_scripts), if you don't need those, feel free to replace the forked plugin on the [plugins.sbt](project/plugins.sbt).
-
-Before being able to build the extension, you'll need to install a plugin locally.
-- Clone `https://github.com/AlexITC/scala-js-chrome`
-- Move to the `add-content-script` branch (`git checkout add-content-script`).
-- Install the custom `scala-js-chrome` locally (`sbt publishLocal`).
-
-Then, running `sbt chromePackage` on this project is enough.
+- Running `sbt chromePackage` on this project is enough to get your extension packaged.
 
 ## Development
 - Running `sbt ~chromeUnpackedFast` will build the app each time it detects changes on the code, it also disables js optimizations which result in faster builds (placing the build at `target/chrome/unpacked-fast`).
