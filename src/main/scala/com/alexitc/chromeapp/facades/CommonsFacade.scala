@@ -1,4 +1,4 @@
-package com.alexitc.facades
+package com.alexitc.chromeapp.facades
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSGlobal

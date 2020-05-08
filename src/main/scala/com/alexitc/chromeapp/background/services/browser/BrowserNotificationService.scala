@@ -1,7 +1,7 @@
-package com.alexitc.background.services.browser
+package com.alexitc.chromeapp.background.services.browser
 
-import com.alexitc.common.{I18NMessages, ResourceProvider}
-import com.alexitc.facades.CommonsFacade
+import com.alexitc.chromeapp.common.{I18NMessages, ResourceProvider}
+import com.alexitc.chromeapp.facades.CommonsFacade
 
 /**
  * Internal service available to the background context, which allows sending notifications to the browser.

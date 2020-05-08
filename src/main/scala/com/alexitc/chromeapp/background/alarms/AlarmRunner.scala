@@ -1,8 +1,8 @@
-package com.alexitc.background.alarms
+package com.alexitc.chromeapp.background.alarms
 
 import chrome.alarms.bindings.AlarmInfo
-import com.alexitc.background.services.browser.BrowserNotificationService
-import com.alexitc.common.I18NMessages
+import com.alexitc.chromeapp.background.services.browser.BrowserNotificationService
+import com.alexitc.chromeapp.common.I18NMessages
 
 import scala.concurrent.ExecutionContext
 

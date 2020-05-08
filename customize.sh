@@ -2,8 +2,8 @@
 set -e
 PACKAGE=$1
 PACKAGE_DIRECTORY=$2
-DEFAULT_PACKAGE="com.alexitc"
-DEFAULT_PACKAGE_DIRECTORY="com/alexitc"
+DEFAULT_PACKAGE="com.alexitc.chromeapp"
+DEFAULT_PACKAGE_DIRECTORY="com/alexitc/chromeapp"
 mkdir -p src/main/scala/$PACKAGE_DIRECTORY
 find src -name '*' -exec sed -i -e "s/$DEFAULT_PACKAGE/$PACKAGE/g" {} \;
 find . -name 'build.sbt' -exec sed -i -e "s/$DEFAULT_PACKAGE/$PACKAGE/g" {} \;

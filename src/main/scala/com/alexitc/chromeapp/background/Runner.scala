@@ -1,11 +1,11 @@
-package com.alexitc.background
+package com.alexitc.chromeapp.background
 
-import com.alexitc.Config
-import com.alexitc.background.alarms.AlarmRunner
-import com.alexitc.background.models.{Command, Event}
-import com.alexitc.background.services.browser.BrowserNotificationService
-import com.alexitc.background.services.storage.StorageService
-import com.alexitc.common.I18NMessages
+import com.alexitc.chromeapp.Config
+import com.alexitc.chromeapp.background.alarms.AlarmRunner
+import com.alexitc.chromeapp.background.models.{Command, Event}
+import com.alexitc.chromeapp.background.services.browser.BrowserNotificationService
+import com.alexitc.chromeapp.background.services.storage.StorageService
+import com.alexitc.chromeapp.common.I18NMessages
 import io.circe.syntax._
 
 import scala.concurrent.{ExecutionContext, Future}

@@ -1,7 +1,7 @@
-package com.alexitc.popup
+package com.alexitc.chromeapp.popup
 
-import com.alexitc.background.BackgroundAPI
-import com.alexitc.common.I18NMessages
+import com.alexitc.chromeapp.background.BackgroundAPI
+import com.alexitc.chromeapp.common.I18NMessages
 import org.scalajs.dom._
 
 import scala.concurrent.ExecutionContext

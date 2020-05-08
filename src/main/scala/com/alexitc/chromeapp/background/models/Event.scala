@@ -1,4 +1,4 @@
-package com.alexitc.background.models
+package com.alexitc.chromeapp.background.models
 
 import io.circe.generic.auto._
 import io.circe.parser.parse

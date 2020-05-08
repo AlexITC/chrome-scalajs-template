@@ -1,4 +1,4 @@
-package com.alexitc.background.services.storage
+package com.alexitc.chromeapp.background.services.storage
 
 import io.circe.Json
 import io.circe.parser.parse

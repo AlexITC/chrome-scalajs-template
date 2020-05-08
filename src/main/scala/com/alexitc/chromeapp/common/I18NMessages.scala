@@ -1,4 +1,4 @@
-package com.alexitc.common
+package com.alexitc.chromeapp.common
 
 import chrome.i18n.I18N
 

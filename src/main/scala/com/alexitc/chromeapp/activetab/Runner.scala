@@ -1,8 +1,8 @@
-package com.alexitc.activetab
+package com.alexitc.chromeapp.activetab
 
-import com.alexitc.Config
-import com.alexitc.background.BackgroundAPI
-import com.alexitc.common.I18NMessages
+import com.alexitc.chromeapp.Config
+import com.alexitc.chromeapp.background.BackgroundAPI
+import com.alexitc.chromeapp.common.I18NMessages
 
 import scala.concurrent.ExecutionContext
 

@@ -1,7 +1,7 @@
-package com.alexitc
+package com.alexitc.chromeapp
 
-import com.alexitc.activetab.ActiveTabConfig
-import com.alexitc.background.alarms.AlarmRunner
+import com.alexitc.chromeapp.activetab.ActiveTabConfig
+import com.alexitc.chromeapp.background.alarms.AlarmRunner
 
 /**
  * This is the global config, which includes any configurable details.

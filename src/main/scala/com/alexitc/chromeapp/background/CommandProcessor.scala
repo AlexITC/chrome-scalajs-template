@@ -1,8 +1,8 @@
-package com.alexitc.background
+package com.alexitc.chromeapp.background
 
-import com.alexitc.background.models.{Command, Event}
-import com.alexitc.background.services.browser.BrowserNotificationService
-import com.alexitc.background.services.storage.StorageService
+import com.alexitc.chromeapp.background.models.{Command, Event}
+import com.alexitc.chromeapp.background.services.browser.BrowserNotificationService
+import com.alexitc.chromeapp.background.services.storage.StorageService
 
 import scala.concurrent.{ExecutionContext, Future}
 
