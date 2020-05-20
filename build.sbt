@@ -4,7 +4,8 @@ import chrome.permissions.Permission.API
 import com.alexitc.{Chrome, ChromeSbtPlugin}
 
 resolvers += Resolver.sonatypeRepo("releases")
-resolvers += Resolver.sonatypeRepo("public")
+resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped")
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
 name := "chrome-scalajs-template" // TODO: REPLACE ME
 version := "1.0.0"
@@ -18,7 +19,9 @@ scalacOptions ++= Seq(
   "-feature"
 )
 
-enablePlugins(ChromeSbtPlugin, BuildInfoPlugin)
+enablePlugins(ChromeSbtPlugin, BuildInfoPlugin, ScalaJSBundlerPlugin, ScalablyTypedConverterPlugin)
+
+lazy val isProductionBuild = sys.env.getOrElse("PROD", "false") == "true"
 
 // build-info
 buildInfoPackage := "com.alexitc"
@@ -27,30 +30,37 @@ buildInfoKeys ++= Seq[BuildInfoKey](
   "production" -> (sys.env.getOrElse("PROD", "false") == "true")
 )
 
+// NOTE: source maps are disabled to avoid a file not found error which occurs when using the current
+// webpack settings.
+scalaJSLinkerConfig := scalaJSLinkerConfig.value.withSourceMap(false)
+version in webpack := "4.8.1"
+
+webpackConfigFile := {
+  val file = if (isProductionBuild) "production.webpack.config.js" else "dev.webpack.config.js"
+  Some(baseDirectory.value / file)
+}
+
 // scala-js-chrome
-scalaJSUseMainModuleInitializer := true
-scalaJSUseMainModuleInitializer in Test := false
 scalaJSLinkerConfig := scalaJSLinkerConfig.value.withRelativizeSourceMapBase(
   Some((Compile / fastOptJS / artifactPath).value.toURI)
 )
 skip in packageJSDependencies := false
 
+webpackBundlingMode := BundlingMode.Application
+
+fastOptJsLib := (webpack in (Compile, fastOptJS)).value.head
+fullOptJsLib := (webpack in (Compile, fullOptJS)).value.head
+
+webpackBundlingMode := BundlingMode.LibraryAndApplication()
+
 // you can customize and have a static output name for lib and dependencies
 // instead of having the default files names like extension-fastopt.js, ...
 artifactPath in (Compile, fastOptJS) := {
-  (crossTarget in fastOptJS).value / "main.js"
+  (crossTarget in (Compile, fastOptJS)).value / "main.js"
 }
 
 artifactPath in (Compile, fullOptJS) := {
-  (crossTarget in fullOptJS).value / "main.js"
-}
-
-artifactPath in (Compile, packageJSDependencies) := {
-  (crossTarget in packageJSDependencies).value / "dependencies.js"
-}
-
-artifactPath in (Compile, packageMinifiedJSDependencies) := {
-  (crossTarget in packageMinifiedJSDependencies).value / "dependencies.js"
+  (crossTarget in (Compile, fullOptJS)).value / "main.js"
 }
 
 chromeManifest := new ExtensionManifest {
@@ -62,12 +72,11 @@ chromeManifest := new ExtensionManifest {
   override val icons = Chrome.icons("icons", "app.png", Set(48, 96, 128))
 
   // TODO: REPLACE ME, use only the minimum required permissions
-  override val permissions =
-    Set[Permission](
-      API.Storage,
-      API.Notifications,
-      API.Alarms
-    )
+  override val permissions = Set[Permission](
+    API.Storage,
+    API.Notifications,
+    API.Alarms
+  )
 
   override val defaultLocale: Option[String] = Some("en")
 
@@ -76,23 +85,21 @@ chromeManifest := new ExtensionManifest {
     Some(BrowserAction(icons, Some("TO BE DEFINED - POPUP TITLE"), Some("popup.html")))
 
   // scripts used on all modules
-  val commonScripts = List("scripts/common.js", "dependencies.js", "main.js")
+  val commonScripts = List("scripts/common.js", "main-bundle.js")
 
-  override val background =
-    Background(
-      scripts = commonScripts ::: List("scripts/background-script.js")
-    )
+  override val background = Background(
+    scripts = commonScripts ::: List("scripts/background-script.js")
+  )
 
-  override val contentScripts: List[ContentScript] =
-    List(
-      ContentScript(
-        matches = List(
-          "https://github.com/*" // TODO: REPLACE ME
-        ),
-        css = List("css/active-tab.css"),
-        js = commonScripts ::: List("scripts/active-tab-script.js")
-      )
+  override val contentScripts: List[ContentScript] = List(
+    ContentScript(
+      matches = List(
+        "https://github.com/*" // TODO: REPLACE ME
+      ),
+      css = List("css/active-tab.css"),
+      js = commonScripts ::: List("scripts/active-tab-script.js")
     )
+  )
 
   override val webAccessibleResources = List("icons/*")
 }
@@ -106,6 +113,7 @@ libraryDependencies += "io.circe" %%% "circe-core" % circe
 libraryDependencies += "io.circe" %%% "circe-generic" % circe
 libraryDependencies += "io.circe" %%% "circe-parser" % circe
 
-addCompilerPlugin(
-  "org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full
+// js dependencies, adding typescript type definitions gets them a Scala facade
+npmDependencies in Compile ++= Seq(
+  "sweetalert" -> "2.1.2"
 )

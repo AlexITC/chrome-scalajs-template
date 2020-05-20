@@ -6,12 +6,17 @@ While there are docs for building browser extensions, it isn't obvious how to do
 
 The current template includes the examples for the following:
 - A tiny script that displays a notification every time you visit github.com
+- A tiny script displaying a nice alert on the page with [SweetAlert](https://www.npmjs.com/package/sweetalert).
+= The SweetAlert facade, so that you get an idea on how to write the JavaScript bindings.
 - A small button on the browser toolbar which renders pop-up and displays a notification.
 - An alarm which is a task executed frequently, currently, displaying a notification.
 - Support for two languages (English/Spanish).
 - An example for dealing with the storage.
 - Configuration classes.
-- A way for building the extension for the dev environment by default, which can be overriden by an environment variable to prepare the extension for release, in this case, it replaces the server from localhost to the one you choose.
+- A way for building the extension for the dev environment by default, which can be overridden by an environment variable to prepare the extension for release, in this case, it replaces the server from localhost to the one you choose.
+- Webpack integration (thanks to [scalajs-bundler](https://github.com/scalacenter/scalajs-bundler/)).
+
+NOTE: If you have any reason to not use webpack, checkout `b92c0f08690a8cd3e57e6dcf0c5d7694a5f20810` and follow the instructions from there.
 
 ## Get started
 
