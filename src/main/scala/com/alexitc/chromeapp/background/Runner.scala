@@ -6,6 +6,7 @@ import com.alexitc.chromeapp.background.models.{Command, Event}
 import com.alexitc.chromeapp.background.services.browser.BrowserNotificationService
 import com.alexitc.chromeapp.background.services.storage.StorageService
 import com.alexitc.chromeapp.common.I18NMessages
+import io.circe.generic.auto._
 import io.circe.syntax._
 
 import scala.concurrent.{ExecutionContext, Future}

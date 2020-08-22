@@ -1,6 +1,7 @@
 package com.alexitc.chromeapp.background
 
 import com.alexitc.chromeapp.background.models.{Command, Event}
+import io.circe.generic.auto._
 import io.circe.syntax._
 
 import scala.concurrent.{ExecutionContext, Future, Promise}
