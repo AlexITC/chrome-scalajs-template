@@ -39,10 +39,9 @@ class Runner(
             cmd
           }
           .flatMap(commandProcessor.process)
-          .recover {
-            case NonFatal(ex) =>
-              log(s"Failed to process command, error = ${ex.getMessage}")
-              Event.CommandRejected(ex.getMessage)
+          .recover { case NonFatal(ex) =>
+            log(s"Failed to process command, error = ${ex.getMessage}")
+            Event.CommandRejected(ex.getMessage)
           }
           .map(_.asJson.noSpaces)
 

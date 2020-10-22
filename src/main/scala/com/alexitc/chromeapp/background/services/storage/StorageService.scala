@@ -22,7 +22,7 @@ private[background] class StorageService(implicit ec: ExecutionContext) {
 
   def load(): Future[Option[Long]] = {
     chrome.storage.Storage.local
-    //.get(key)
+      //.get(key)
       .get(???) // TODO: Fix
       .map(_.asInstanceOf[js.Dictionary[String]])
       .map { dict =>

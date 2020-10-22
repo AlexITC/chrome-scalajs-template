@@ -8,8 +8,8 @@ import com.alexitc.chromeapp.facades.SweetAlert
 import scala.concurrent.ExecutionContext
 import scala.scalajs.js.JSConverters._
 
-class Runner(config: ActiveTabConfig, backgroundAPI: BackgroundAPI, messages: I18NMessages)(
-    implicit ec: ExecutionContext
+class Runner(config: ActiveTabConfig, backgroundAPI: BackgroundAPI, messages: I18NMessages)(implicit
+    ec: ExecutionContext
 ) {
 
   def run(): Unit = {
