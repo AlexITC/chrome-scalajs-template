@@ -107,7 +107,7 @@ chromeManifest := new ExtensionManifest {
 
 val circe = "0.13.0"
 
-libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "1.0.0"
+libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "1.1.0"
 libraryDependencies += "com.alexitc" %%% "scala-js-chrome" % "0.7.0"
 
 libraryDependencies += "io.circe" %%% "circe-core" % circe
