@@ -26,8 +26,8 @@ class BackgroundAPI(implicit ec: ExecutionContext) {
 
   def sendBrowserNotification(title: String, message: String): Future[Unit] = {
     val command: Command = Command.SendBrowserNotification(title, message)
-    process(command).collect {
-      case _: Event.BrowserNotificationSent => ()
+    process(command).collect { case _: Event.BrowserNotificationSent =>
+      ()
     }
   }
 
@@ -46,18 +46,16 @@ class BackgroundAPI(implicit ec: ExecutionContext) {
         val _ = org.scalajs.dom.window.setTimeout(() => promise.completeWith(processInternal(command)), timeoutMs)
 
         promise.future
-          .recoverWith {
-            case TransientError(e) =>
-              log(s"Trying to recover from transient error, retry = $retriesLeft, command = $command, error = $e")
-              processWithRetries(retriesLeft - 1, e)
+          .recoverWith { case TransientError(e) =>
+            log(s"Trying to recover from transient error, retry = $retriesLeft, command = $command, error = $e")
+            processWithRetries(retriesLeft - 1, e)
           }
       }
     }
 
-    processInternal(command).recoverWith {
-      case TransientError(e) =>
-        log(s"Trying to recover from transient error, command = $command, error = $e")
-        processWithRetries(3, e)
+    processInternal(command).recoverWith { case TransientError(e) =>
+      log(s"Trying to recover from transient error, command = $command, error = $e")
+      processWithRetries(3, e)
     }
   }
 

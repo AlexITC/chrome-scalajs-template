@@ -66,6 +66,7 @@ artifactPath in (Compile, fullOptJS) := {
 chromeManifest := new ExtensionManifest {
   override val name = "__MSG_extensionName__" // NOTE: i18n on the manifest is not supported on firefox
   override val version = Keys.version.value
+
   override val description = Some(
     "TO BE UPDATED" // TODO: REPLACE ME
   )
