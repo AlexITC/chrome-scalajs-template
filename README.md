@@ -27,12 +27,13 @@ It's pretty simple to get started, just follow these steps:
 - Move to the cloned repo: `cd chrome-scalajs-template`
 - Add your brand: `./customize.sh com.alexitc.chrome com/alexitc/chrome` (replace the arguments with your desired base package, ignore the `sed` related warnings).
 - Edit the [build.sbt](build.sbt) to add the desired details for your app.
+- Edit the [AppManifest.scala](project/AppManifest.scala) to define your app manifest.
 - Edit the [app resources](src/main/resources) to the ones for your app.
 - Commit your changes and continue to the next section for building the app, also, start looking on the [Firefox guide](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) or the [Chrome guide](https://developer.chrome.com/extensions/devguide) for developing extensions.
 - Running `sbt chromePackage` on this project is enough to get your extension packaged.
 
 ## Development
-- Running `sbt ~chromeUnpackedFast` will build the app each time it detects changes on the code, it also disables js optimizations which result in faster builds (placing the build at `target/chrome/unpacked-fast`).
+- Running `sbt "~chromeUnpackedFast"` will build the app each time it detects changes on the code, it also disables js optimizations which result in faster builds (placing the build at `target/chrome/unpacked-fast`).
 - Be sure to integrate scalafmt on your IntelliJ to format the source code on save (see https://scalameta.org/scalafmt/docs/installation.html#intellij).
 
 ## Release
