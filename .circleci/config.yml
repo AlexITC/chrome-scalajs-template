@@ -25,7 +25,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - chrome-cache-v1-
 
-      - run: sbt compile
+      - run: sbt test:compile
 
       - save_cache:
           paths:
@@ -35,7 +35,7 @@ jobs:
           key: chrome-cache-v1-{{ checksum "build.sbt" }}-{{ checksum "project/plugins.sbt" }}
 
       # run tests!
-      # - run: cd chrome && sbt test
+      - run: sbt test
 
       # package
       - run: sbt chromePackage

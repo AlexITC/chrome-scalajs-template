@@ -34,6 +34,11 @@ lazy val bundlerSettings: Project => Project = {
       // webpack settings.
       scalaJSLinkerConfig := scalaJSLinkerConfig.value.withSourceMap(false),
       version in webpack := "4.8.1",
+      // running `sbt test` fails if the webpack config is specified, it seems to happen because
+      // the default webpack config from scalajs-bundler isn't written, making `sbt test` depend on
+      // the chromeUnpackedFast task ensures that such config is generated, there might be a better
+      // solution but this works for now.
+      Test / test := (Test / test).dependsOn(chromeUnpackedFast).value,
       webpackConfigFile := {
         val file = if (isProductionBuild) "production.webpack.config.js" else "dev.webpack.config.js"
         Some(baseDirectory.value / file)
@@ -84,6 +89,7 @@ lazy val root = (project in file("."))
       "com.alexitc" %%% "scala-js-chrome" % "0.7.0",
       "io.circe" %%% "circe-core" % circe,
       "io.circe" %%% "circe-generic" % circe,
-      "io.circe" %%% "circe-parser" % circe
+      "io.circe" %%% "circe-parser" % circe,
+      "org.scalatest" %%% "scalatest" % "3.1.1" % "test"
     )
   )
