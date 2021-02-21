@@ -1,0 +1,48 @@
+# Scala CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/sample-config/ for more details
+#
+version: 2
+jobs:
+  build-and-test:
+    docker:
+      - image: circleci/openjdk:8-jdk-node
+
+    working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - chrome-cache-v1-{{ checksum "build.sbt" }}-{{ checksum "project/plugins.sbt" }}
+            # fallback to using the latest cache if no exact match is found
+            - chrome-cache-v1-
+
+      - run: sbt compile
+
+      - save_cache:
+          paths:
+            - ~/.cache/coursier
+            - ~/.ivy2
+            - ~/.m2
+          key: chrome-cache-v1-{{ checksum "build.sbt" }}-{{ checksum "project/plugins.sbt" }}
+
+      # run tests!
+      # - run: cd chrome && sbt test
+
+      # package
+      - run: sbt chromePackage
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-and-test
+ 
