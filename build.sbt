@@ -39,6 +39,7 @@ lazy val bundlerSettings: Project => Project = {
       // the chromeUnpackedFast task ensures that such config is generated, there might be a better
       // solution but this works for now.
       Test / test := (Test / test).dependsOn(chromeUnpackedFast).value,
+      webpackConfigFile in Test := Some(baseDirectory.value / "test.webpack.config.js"),
       webpackConfigFile := {
         val file = if (isProductionBuild) "production.webpack.config.js" else "dev.webpack.config.js"
         Some(baseDirectory.value / file)
