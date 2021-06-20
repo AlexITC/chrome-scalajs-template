@@ -33,7 +33,7 @@ It's pretty simple to get started, just follow these steps:
 - Edit the [build.sbt](build.sbt) to add the desired details for your app.
 - Edit the [AppManifest.scala](project/AppManifest.scala) to define your app manifest.
 - Edit the [app resources](src/main/resources) to the ones for your app.
-- Commit your changes and continue to the next section for building the app, also, start looking on the [Firefox guide](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) or the [Chrome guide](https://developer.chrome.com/extensions/devguide) for developing extensions.
+- Commit your changes and continue to the next section for building the app, also, start looking on the [Firefox guide](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) or the [Chrome guide](https://developer.chrome.com/docs/extensions/mv2/) for developing extensions.
 - Running `sbt chromePackage` on this project is enough to get your extension packaged.
 
 ## Development
