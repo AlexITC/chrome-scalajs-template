@@ -4,6 +4,7 @@
 
 This is an opinionated template that can help you to get started fast while building browser extensions with scala-js.
 
+**NOTE** Be aware that this template targets the Manifest Version 2, track the Manifest Version 3 support in this [issue](https://github.com/AlexITC/chrome-scalajs-template/issues/28).
 
 ## Why
 While there are docs for building browser extensions, it isn't obvious how to do it with scala-js, after dealing with an extension for a while, I got a reasonable architecture that can be reused on other extensions and simplify its development, the goal from this template is to save you valuable time.
