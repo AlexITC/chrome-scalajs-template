@@ -3,6 +3,8 @@ import com.alexitc.ChromeSbtPlugin
 lazy val appName = "chrome-scalajs-template" // TODO: REPLACE ME
 lazy val isProductionBuild = sys.env.getOrElse("PROD", "false") == "true"
 
+Global / onChangedBuildSource := ReloadOnSourceChanges
+
 val circe = "0.13.0"
 
 lazy val baseSettings: Project => Project = {
