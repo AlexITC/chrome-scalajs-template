@@ -25,7 +25,7 @@ lazy val baseSettings: Project => Project = {
         "-unchecked" // Enable additional warnings where generated code depends on assumptions.
       ),
       scalacOptions += "-Ymacro-annotations",
-      requireJsDomEnv in Test := true
+      Test / requireJsDomEnv := true
     )
 }
 
@@ -35,13 +35,13 @@ lazy val bundlerSettings: Project => Project = {
       // NOTE: source maps are disabled to avoid a file not found error which occurs when using the current
       // webpack settings.
       scalaJSLinkerConfig := scalaJSLinkerConfig.value.withSourceMap(false),
-      version in webpack := "4.8.1",
+      webpack / version := "4.8.1",
       // running `sbt test` fails if the webpack config is specified, it seems to happen because
       // the default webpack config from scalajs-bundler isn't written, making `sbt test` depend on
       // the chromeUnpackedFast task ensures that such config is generated, there might be a better
       // solution but this works for now.
       Test / test := (Test / test).dependsOn(chromeUnpackedFast).value,
-      webpackConfigFile in Test := Some(baseDirectory.value / "test.webpack.config.js"),
+      Test / webpackConfigFile := Some(baseDirectory.value / "test.webpack.config.js"),
       webpackConfigFile := {
         val file = if (isProductionBuild) "production.webpack.config.js" else "dev.webpack.config.js"
         Some(baseDirectory.value / file)
@@ -50,18 +50,18 @@ lazy val bundlerSettings: Project => Project = {
       scalaJSLinkerConfig := scalaJSLinkerConfig.value.withRelativizeSourceMapBase(
         Some((Compile / fastOptJS / artifactPath).value.toURI)
       ),
-      skip in packageJSDependencies := false,
+      packageJSDependencies / skip := false,
       webpackBundlingMode := BundlingMode.Application,
-      fastOptJsLib := (webpack in (Compile, fastOptJS)).value.head,
-      fullOptJsLib := (webpack in (Compile, fullOptJS)).value.head,
+      fastOptJsLib := (Compile / fastOptJS / webpack).value.head,
+      fullOptJsLib := (Compile / fullOptJS / webpack).value.head,
       webpackBundlingMode := BundlingMode.LibraryAndApplication(),
       // you can customize and have a static output name for lib and dependencies
       // instead of having the default files names like extension-fastopt.js, ...
-      artifactPath in (Compile, fastOptJS) := {
-        (crossTarget in (Compile, fastOptJS)).value / "main.js"
+      Compile / fastOptJS / artifactPath := {
+        (Compile / fastOptJS / crossTarget).value / "main.js"
       },
-      artifactPath in (Compile, fullOptJS) := {
-        (crossTarget in (Compile, fullOptJS)).value / "main.js"
+      Compile / fullOptJS / artifactPath := {
+        (Compile / fullOptJS / crossTarget).value / "main.js"
       }
     )
 }
