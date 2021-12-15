@@ -9,14 +9,15 @@ import com.alexitc.chromeapp.common.I18NMessages
 import io.circe.generic.auto._
 import io.circe.syntax._
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.Future
+import org.scalajs.macrotaskexecutor.MacrotaskExecutor.Implicits._
 import scala.util.Try
 import scala.util.control.NonFatal
 
 class Runner(
     commandProcessor: CommandProcessor,
     alarmRunner: AlarmRunner
-)(implicit ec: ExecutionContext) {
+) {
 
   def run(): Unit = {
     log("This was run by the background script")
@@ -62,7 +63,7 @@ class Runner(
 
 object Runner {
 
-  def apply(config: Config)(implicit ec: ExecutionContext): Runner = {
+  def apply(config: Config): Runner = {
     val storage = new StorageService
     val messages = new I18NMessages
     val browserNotificationService = new BrowserNotificationService(messages)

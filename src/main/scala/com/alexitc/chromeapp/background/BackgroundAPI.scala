@@ -4,7 +4,8 @@ import com.alexitc.chromeapp.background.models.{Command, Event}
 import io.circe.generic.auto._
 import io.circe.syntax._
 
-import scala.concurrent.{ExecutionContext, Future, Promise}
+import scala.concurrent.{Future, Promise}
+import org.scalajs.macrotaskexecutor.MacrotaskExecutor.Implicits._
 import scala.scalajs.js
 import scala.util.{Failure, Success, Try}
 
@@ -20,7 +21,7 @@ import scala.util.{Failure, Success, Try}
  *
  * The BackgroundAPI abstracts all that complex logic from the caller and gives a simple API based on futures.
  */
-class BackgroundAPI(implicit ec: ExecutionContext) {
+class BackgroundAPI {
 
   import BackgroundAPI._
 

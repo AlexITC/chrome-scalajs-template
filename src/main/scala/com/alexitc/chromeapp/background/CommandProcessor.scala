@@ -4,7 +4,7 @@ import com.alexitc.chromeapp.background.models.{Command, Event}
 import com.alexitc.chromeapp.background.services.browser.BrowserNotificationService
 import com.alexitc.chromeapp.background.services.storage.StorageService
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.Future
 
 /**
  * Any command supported by the BackgroundAPI is handled here.
@@ -12,7 +12,7 @@ import scala.concurrent.{ExecutionContext, Future}
 private[background] class CommandProcessor(
     productStorage: StorageService,
     browserNotificationService: BrowserNotificationService
-)(implicit ec: ExecutionContext) {
+) {
 
   def process(command: Command): Future[Event] = command match {
     case Command.SendBrowserNotification(title, message) =>

@@ -4,8 +4,6 @@ import com.alexitc.chromeapp.background.BackgroundAPI
 import com.alexitc.chromeapp.common.I18NMessages
 import org.scalajs.dom._
 
-import scala.concurrent.ExecutionContext
-
 class Runner(messages: I18NMessages, backgroundAPI: BackgroundAPI) {
 
   def run(): Unit = {
@@ -27,7 +25,7 @@ class Runner(messages: I18NMessages, backgroundAPI: BackgroundAPI) {
 
 object Runner {
 
-  def apply()(implicit ec: ExecutionContext): Runner = {
+  def apply(): Runner = {
     val messages = new I18NMessages
     val backgroundAPI = new BackgroundAPI()
     new Runner(messages, backgroundAPI)

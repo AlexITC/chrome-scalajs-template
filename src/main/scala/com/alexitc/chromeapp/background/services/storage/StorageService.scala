@@ -3,13 +3,14 @@ package com.alexitc.chromeapp.background.services.storage
 import io.circe.Json
 import io.circe.parser.parse
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.Future
+import org.scalajs.macrotaskexecutor.MacrotaskExecutor.Implicits._
 import scala.scalajs.js
 
 /**
  * Internal service available to the background context, which allows dealing with the storage local.
  */
-private[background] class StorageService(implicit ec: ExecutionContext) {
+private[background] class StorageService {
   import StorageService._
   //import js.JSConverters._
 
