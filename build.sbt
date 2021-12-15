@@ -91,6 +91,7 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "1.2.0",
       "com.alexitc" %%% "scala-js-chrome" % "0.7.0",
+      "org.scala-js" %%% "scala-js-macrotask-executor" % "1.0.0",
       "io.circe" %%% "circe-core" % circe,
       "io.circe" %%% "circe-generic" % circe,
       "io.circe" %%% "circe-parser" % circe,
