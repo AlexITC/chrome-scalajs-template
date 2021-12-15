@@ -2,14 +2,13 @@ import com.alexitc.chromeapp._
 
 import scala.scalajs.js.annotation.JSExportTopLevel
 
-/**
- * Entry-point for any context, it loads the config based on the current environment, which can be
- * production or development for now.
- *
- * It creates the necessary objects and execute the runner for the actual context.
- *
- * It is assumed that the entry-point is an actual JavaScript file that invokes these functions.
- */
+/** Entry-point for any context, it loads the config based on the current environment, which can be production or
+  * development for now.
+  *
+  * It creates the necessary objects and execute the runner for the actual context.
+  *
+  * It is assumed that the entry-point is an actual JavaScript file that invokes these functions.
+  */
 object Main {
 
   private val config = if (com.alexitc.BuildInfo.production) {

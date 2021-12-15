@@ -6,9 +6,8 @@ import com.alexitc.chromeapp.background.services.storage.StorageService
 
 import scala.concurrent.Future
 
-/**
- * Any command supported by the BackgroundAPI is handled here.
- */
+/** Any command supported by the BackgroundAPI is handled here.
+  */
 private[background] class CommandProcessor(
     productStorage: StorageService,
     browserNotificationService: BrowserNotificationService

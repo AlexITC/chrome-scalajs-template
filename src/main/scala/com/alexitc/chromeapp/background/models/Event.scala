@@ -5,9 +5,8 @@ import io.circe.parser.parse
 
 import scala.util.Try
 
-/**
- * Internal typed-message used by the background context to reply to an operation
- */
+/** Internal typed-message used by the background context to reply to an operation
+  */
 private[background] sealed trait Event extends Product with Serializable
 
 private[background] object Event {

@@ -25,11 +25,10 @@ class Runner(
     processExternalMessages()
   }
 
-  /**
-   * Enables the future-based communication between contexts to the background contexts.
-   *
-   * Internally, this is done by string-based messages, which we encode as JSON.
-   */
+  /** Enables the future-based communication between contexts to the background contexts.
+    *
+    * Internally, this is done by string-based messages, which we encode as JSON.
+    */
   private def processExternalMessages(): Unit = {
     chrome.runtime.Runtime.onMessage.listen { message =>
       message.value.foreach { any =>
@@ -46,11 +45,10 @@ class Runner(
           }
           .map(_.asJson.noSpaces)
 
-        /**
-         * NOTE: When replying on futures, the method returning an async response is the only reliable one
-         * otherwise, the sender is getting no response, a way to use the async method is to pass a response
-         * in case of failures even if that case was already handled with the CommandRejected event.
-         */
+        /** NOTE: When replying on futures, the method returning an async response is the only reliable one otherwise,
+          * the sender is getting no response, a way to use the async method is to pass a response in case of failures
+          * even if that case was already handled with the CommandRejected event.
+          */
         message.response(response, "Impossible failure")
       }
     }

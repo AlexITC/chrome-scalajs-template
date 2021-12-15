@@ -5,9 +5,8 @@ import io.circe.parser.parse
 
 import scala.util.Try
 
-/**
- * Internal typed-message to request the background context to perform an operation.
- */
+/** Internal typed-message to request the background context to perform an operation.
+  */
 private[background] sealed trait Command extends Product with Serializable
 
 private[background] object Command {

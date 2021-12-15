@@ -3,11 +3,10 @@ package com.alexitc.chromeapp
 import com.alexitc.chromeapp.activetab.ActiveTabConfig
 import com.alexitc.chromeapp.background.alarms.AlarmRunner
 
-/**
- * This is the global config, which includes any configurable details.
- *
- * For convenience, there are two configs, the Default one and the one for Development.
- */
+/** This is the global config, which includes any configurable details.
+  *
+  * For convenience, there are two configs, the Default one and the one for Development.
+  */
 case class Config(
     alarmRunnerConfig: AlarmRunner.Config,
     activeTabConfig: activetab.ActiveTabConfig

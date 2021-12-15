@@ -4,10 +4,8 @@ import chrome.alarms.bindings.AlarmInfo
 import com.alexitc.chromeapp.background.services.browser.BrowserNotificationService
 import com.alexitc.chromeapp.common.I18NMessages
 
-
-/**
- * Example code to register and run a configurable alarm.
- */
+/** Example code to register and run a configurable alarm.
+  */
 private[background] class AlarmRunner(
     config: AlarmRunner.Config,
     messages: I18NMessages,

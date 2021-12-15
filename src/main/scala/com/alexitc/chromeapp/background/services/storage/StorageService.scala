@@ -7,12 +7,11 @@ import scala.concurrent.Future
 import org.scalajs.macrotaskexecutor.MacrotaskExecutor.Implicits._
 import scala.scalajs.js
 
-/**
- * Internal service available to the background context, which allows dealing with the storage local.
- */
+/** Internal service available to the background context, which allows dealing with the storage local.
+  */
 private[background] class StorageService {
   import StorageService._
-  //import js.JSConverters._
+  // import js.JSConverters._
 
   def save(installedOn: Long): Future[Unit] = {
     val json = s"""{"lastUsedOn": $installedOn}"""
@@ -23,7 +22,7 @@ private[background] class StorageService {
 
   def load(): Future[Option[Long]] = {
     chrome.storage.Storage.local
-      //.get(key)
+      // .get(key)
       .get(???) // TODO: Fix
       .map(_.asInstanceOf[js.Dictionary[String]])
       .map { dict =>

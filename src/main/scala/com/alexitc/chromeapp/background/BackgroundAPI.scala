@@ -9,18 +9,17 @@ import org.scalajs.macrotaskexecutor.MacrotaskExecutor.Implicits._
 import scala.scalajs.js
 import scala.util.{Failure, Success, Try}
 
-/**
- * There are some APIs that can be accessed only from the background runner, like http/storage/notifications/etc.
- *
- * A way to call these ones from other contexts is to send a message to the background.
- *
- * A request/response mechanism can be simulated by using promises/futures.
- *
- * Any operation is encoded as JSON and parsed on the background context, which runs the actual operation
- * and returns the result as another message.
- *
- * The BackgroundAPI abstracts all that complex logic from the caller and gives a simple API based on futures.
- */
+/** There are some APIs that can be accessed only from the background runner, like http/storage/notifications/etc.
+  *
+  * A way to call these ones from other contexts is to send a message to the background.
+  *
+  * A request/response mechanism can be simulated by using promises/futures.
+  *
+  * Any operation is encoded as JSON and parsed on the background context, which runs the actual operation and returns
+  * the result as another message.
+  *
+  * The BackgroundAPI abstracts all that complex logic from the caller and gives a simple API based on futures.
+  */
 class BackgroundAPI {
 
   import BackgroundAPI._
@@ -32,11 +31,9 @@ class BackgroundAPI {
     }
   }
 
-  /**
-   * Processes a command sending a message to the background context, when the background
-   * isn't ready, the command is retried up to 3 times, delaying 1 second each time, this
-   * retry strategy should be enough for most cases.
-   */
+  /** Processes a command sending a message to the background context, when the background isn't ready, the command is
+    * retried up to 3 times, delaying 1 second each time, this retry strategy should be enough for most cases.
+    */
   private def process(command: Command): Future[Event] = {
     val timeoutMs = 1000
     def processWithRetries(retriesLeft: Int, lastError: String): Future[Event] = {
