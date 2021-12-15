@@ -4,7 +4,6 @@ import chrome.alarms.bindings.AlarmInfo
 import com.alexitc.chromeapp.background.services.browser.BrowserNotificationService
 import com.alexitc.chromeapp.common.I18NMessages
 
-import scala.concurrent.ExecutionContext
 
 /**
  * Example code to register and run a configurable alarm.
@@ -13,7 +12,7 @@ private[background] class AlarmRunner(
     config: AlarmRunner.Config,
     messages: I18NMessages,
     notificationService: BrowserNotificationService
-)(implicit ec: ExecutionContext) {
+) {
 
   def register(): Unit = {
     val alarmName = "TO_BE_DEFINED"

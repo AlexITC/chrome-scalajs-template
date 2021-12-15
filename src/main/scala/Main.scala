@@ -1,6 +1,5 @@
 import com.alexitc.chromeapp._
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.scalajs.js.annotation.JSExportTopLevel
 
 /**

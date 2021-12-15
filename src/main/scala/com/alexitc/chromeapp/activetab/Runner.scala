@@ -5,12 +5,10 @@ import com.alexitc.chromeapp.background.BackgroundAPI
 import com.alexitc.chromeapp.common.I18NMessages
 import com.alexitc.chromeapp.facades.SweetAlert
 
-import scala.concurrent.ExecutionContext
+import org.scalajs.macrotaskexecutor.MacrotaskExecutor.Implicits._
 import scala.scalajs.js.JSConverters._
 
-class Runner(config: ActiveTabConfig, backgroundAPI: BackgroundAPI, messages: I18NMessages)(implicit
-    ec: ExecutionContext
-) {
+class Runner(config: ActiveTabConfig, backgroundAPI: BackgroundAPI, messages: I18NMessages) {
 
   def run(): Unit = {
     log("This was run by the active tab")
@@ -33,7 +31,7 @@ class Runner(config: ActiveTabConfig, backgroundAPI: BackgroundAPI, messages: I1
 
 object Runner {
 
-  def apply(config: Config)(implicit ec: ExecutionContext): Runner = {
+  def apply(config: Config): Runner = {
     val backgroundAPI = new BackgroundAPI
     val messages = new I18NMessages
     new Runner(config.activeTabConfig, backgroundAPI, messages)
