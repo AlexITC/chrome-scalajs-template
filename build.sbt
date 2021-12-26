@@ -89,7 +89,7 @@ lazy val root = (project in file("."))
       "sweetalert" -> "2.1.2"
     ),
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "1.2.0",
+      "org.scala-js" %%% "scalajs-dom" % "2.0.0",
       "com.alexitc" %%% "scala-js-chrome" % "0.7.0",
       "org.scala-js" %%% "scala-js-macrotask-executor" % "1.0.0",
       "io.circe" %%% "circe-core" % circe,
