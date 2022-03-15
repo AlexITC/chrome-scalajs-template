@@ -73,7 +73,11 @@ lazy val buildInfoSettings: Project => Project = {
       buildInfoPackage := "com.alexitc",
       buildInfoKeys := Seq[BuildInfoKey](name),
       buildInfoKeys ++= Seq[BuildInfoKey](
-        "production" -> isProductionBuild
+        "production" -> isProductionBuild,
+
+        // it's simpler to propagate the required js scripts from this file to avoid hardcoding
+        // them on the code that actually injects them.
+        "activeTabWebsiteScripts" -> AppManifest.manifestActiveTabWebsiteScripts
       ),
       buildInfoUsePackageAsPath := true
     )

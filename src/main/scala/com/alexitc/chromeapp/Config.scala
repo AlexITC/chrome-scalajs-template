@@ -18,14 +18,11 @@ object Config {
   val Default: Config = {
     Config(
       AlarmRunner.Config(periodInMinutes = 60 * 3),
-      ActiveTabConfig()
+      ActiveTabConfig(
+        com.alexitc.BuildInfo.activeTabWebsiteScripts.toList
+      )
     )
   }
 
-  val Dev: Config = {
-    Config(
-      AlarmRunner.Config(periodInMinutes = 2),
-      ActiveTabConfig()
-    )
-  }
+  val Dev: Config = Default.copy(alarmRunnerConfig = AlarmRunner.Config(periodInMinutes = 2))
 }

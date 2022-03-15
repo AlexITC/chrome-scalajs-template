@@ -4,6 +4,11 @@ import chrome.{Background, BrowserAction, ContentScript, ExtensionManifest}
 import com.alexitc.Chrome
 
 object AppManifest {
+  // scripts used on all modules
+  val commonScripts = List("scripts/common.js", "main-bundle.js")
+
+  // The script that runs on the current tab context needs the common scripts to execute scalajs code.
+  val manifestActiveTabWebsiteScripts = commonScripts :+ "scripts/active-tab-website-script.js"
 
   def generate(appName: String, appVersion: String): ExtensionManifest = {
     new ExtensionManifest {
@@ -28,9 +33,6 @@ object AppManifest {
       override val browserAction: Option[BrowserAction] =
         Some(BrowserAction(icons, Some("TO BE DEFINED - POPUP TITLE"), Some("popup.html")))
 
-      // scripts used on all modules
-      val commonScripts = List("scripts/common.js", "main-bundle.js")
-
       override val background = Background(
         scripts = commonScripts ::: List("scripts/background-script.js")
       )
@@ -45,7 +47,8 @@ object AppManifest {
         )
       )
 
-      override val webAccessibleResources = List("icons/*")
+      // the script running on the tab context requires the common scripts
+      override val webAccessibleResources = "icons/*" :: manifestActiveTabWebsiteScripts
     }
   }
 }

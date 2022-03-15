@@ -1,3 +1,3 @@
 package com.alexitc.chromeapp.activetab
 
-case class ActiveTabConfig()
+case class ActiveTabConfig(websiteScripts: List[String])

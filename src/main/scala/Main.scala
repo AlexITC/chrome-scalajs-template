@@ -1,4 +1,5 @@
 import com.alexitc.chromeapp._
+import org.scalajs.macrotaskexecutor.MacrotaskExecutor.Implicits._
 
 import scala.scalajs.js.annotation.JSExportTopLevel
 
@@ -34,5 +35,10 @@ object Main {
   @JSExportTopLevel("runOnPopup")
   def runOnPopup(): Unit = {
     popup.Runner().run()
+  }
+
+  @JSExportTopLevel("runOnCurrentWebsite")
+  def runOnCurrentTabContext(): Unit = {
+    website.Runner().run()
   }
 }
