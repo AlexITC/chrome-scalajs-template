@@ -5,7 +5,7 @@ lazy val isProductionBuild = sys.env.getOrElse("PROD", "false") == "true"
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
-val circe = "0.14.1"
+val circe = "0.14.3"
 
 lazy val baseSettings: Project => Project = {
   _.enablePlugins(ScalaJSPlugin)
