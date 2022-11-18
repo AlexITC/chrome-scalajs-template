@@ -1,4 +1,4 @@
-addSbtPlugin("org.scalablytyped.converter" % "sbt-converter" % "1.0.0-beta37")
+addSbtPlugin("org.scalablytyped.converter" % "sbt-converter" % "1.0.0-beta40")
 addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.10.0")
 addSbtPlugin("com.alexitc" % "sbt-chrome-plugin" % "0.8.1")
 addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.11.0")
