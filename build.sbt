@@ -12,7 +12,7 @@ lazy val baseSettings: Project => Project = {
     .settings(
       name := appName,
       version := "1.0.0",
-      scalaVersion := "2.13.8",
+      scalaVersion := "2.13.13",
       scalacOptions ++= Seq(
         "-language:implicitConversions",
         "-language:existentials",
